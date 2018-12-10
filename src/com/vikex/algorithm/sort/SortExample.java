@@ -13,6 +13,10 @@ public class SortExample {
         SimpleSort.insertSort(arr);
         System.out.println("插入排序: " + Arrays.toString(arr));
 
+        arr = getArray();
+        SimpleSort.quickSort(arr, 0, arr.length - 1);
+        System.out.println("快速排序: " + Arrays.toString(arr));
+
     }
 
     private static int[] getArray() {

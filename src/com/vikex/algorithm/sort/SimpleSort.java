@@ -52,5 +52,49 @@ public class SimpleSort {
         }
     }
 
+    //快速排序，时间复杂度O(nlogn)
+    public static void quickSort(int[] numbers, int low, int high) {
+        int l = low;
+        int h = high;
+        //将第一个值作为轴心值
+        int pivot = numbers[low];
+        while (l < h) {
+            //从最后一个元素向前查找比轴心值小的元素
+            while (l < h && numbers[h] >= pivot) {
+                h--;
+            }
+
+            //将所找到的小于轴心值得元素和轴心值进行互换
+            if (l < h) {
+                int tmp = numbers[h];
+                numbers[h] = numbers[l];
+                numbers[l] = tmp;
+                l++;
+            }
+
+            //从第一个元素开始向后查找比轴心值大的元素
+            while (l < h && numbers[l] <= pivot) {
+                l++;
+            }
+
+            //将所找到的大于轴心值得元素和轴心值进行互换
+            if (l < h) {
+                int tmp = numbers[h];
+                numbers[h] = numbers[l];
+                numbers[l] = tmp;
+                h--;
+            }
+        }
+
+        /*
+         * 将轴心值前面和后面的部分进行迭代排序
+         */
+        if (l > low) {
+            quickSort(numbers, low, l - 1);
+        }
+        if (h < high) {
+            quickSort(numbers, l + 1, high);
+        }
+    }
 
 }
